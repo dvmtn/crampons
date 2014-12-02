@@ -1,12 +1,12 @@
 default:
   - 'clean'
-  - 'jshint'
-  - 'jasmine'
   - 'concat'
   - 'uglify'
   - 'sass'
   - 'copy:html'
   - 'haml'
+  - 'jshint'
+  - 'jasmine'
   - 'imagemin'
 
 test:
