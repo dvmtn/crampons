@@ -1,6 +1,6 @@
 module.exports = {
-  src: 'dist/<%= package.name %>.min.js',
+  src: 'dist/<%= package.name %>.js',
   options:{
-    specs: 'js/test/*'
+    specs: 'js/test/**/*'
   }
 };
