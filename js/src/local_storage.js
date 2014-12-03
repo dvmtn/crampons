@@ -1,15 +1,17 @@
 (function(){
   window.crampons.teeth.LocalStorage = function(events){
     var get = function(key){
-      localStorage.getItem(key);
+      return JSON.parse(localStorage.getItem(key));
     };
 
     var set = function(key, value){
-      localStorage.setItem(key, value);
+      var string = JSON.stringify(value);
+      localStorage.setItem(key, string);
     };
 
     var get_handler = function(options){
-      get(options.key);
+      var value = get(options.key);
+      options.complete(value);
     };
 
     var set_handler = function(options){
