@@ -1,3 +1,3 @@
 Crampons
 ========
-An event driven framework to organise your client side JavaScript.
+Event-driven JS utilities to help you scale the heights of webapp development.
