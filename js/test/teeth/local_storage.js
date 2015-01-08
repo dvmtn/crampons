@@ -21,20 +21,20 @@ describe("LocalStorage", function(){
       };
     });
 
-    it('it calls localStorage.getItem', function(){
+    it('calls localStorage.getItem', function(){
       spyOn(window.localStorage, 'getItem').and.returnValue(null);
       this.events.publish('local_storage:get', this.options);
       expect( localStorage.getItem ).toHaveBeenCalledWith('foo');
     });
 
-    it('it returns the value from local storage to a complete callback', function(){
+    it('returns the value from local storage to a complete callback', function(){
       spyOn(window.localStorage, 'getItem').and.returnValue('"bar"');
       spyOn(this.options, 'complete');
       this.events.publish('local_storage:get', this.options );
       expect( this.options.complete ).toHaveBeenCalledWith('bar');
     });
 
-    it('it parses stringified json', function(){
+    it('parses stringified json', function(){
       spyOn(window.localStorage, 'getItem').and.returnValue('{"foo":"bar"}');
       spyOn(this.options, 'complete');
       this.events.publish('local_storage:get', this.options );
