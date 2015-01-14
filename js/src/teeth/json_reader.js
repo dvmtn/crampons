@@ -3,8 +3,9 @@
 
     var get_handler = function(options){
       var url = options.url;
-      var raw_json = window.crampons.get(url);
-      options.complete(JSON.parse(raw_json));
+      window.crampons.get(url, function(response){
+        options.complete(JSON.parse(response));
+      });
     };
 
     events.subscribe('json_reader:get', get_handler);

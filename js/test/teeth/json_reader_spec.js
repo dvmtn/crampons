@@ -13,29 +13,33 @@ describe("JsonReader", function(){
   });
 
   describe("on a get event", function(){
-    var stub_get_to_respond = function(response){
-      window.crampons.get = jasmine.createSpy('get').and.returnValue(response);
-    };
+    var stub_get_to_respond, options;
 
     beforeEach(function(){
       this.json_reader = new window.crampons.teeth.JsonReader(this.events);
 
-      this.options = {
+      options = {
         url: 'example.json',
         complete: jasmine.createSpy('complete_function')
+      };
+
+      stub_get_to_respond = function(response){
+        window.crampons.get = function(url, complete, error){
+          complete(response);
+        };
       };
     });
 
     it('passes the value from a GET to the complete callback', function(){
       stub_get_to_respond('"bar"');
-      this.events.publish('json_reader:get', this.options);
-      expect( this.options.complete ).toHaveBeenCalledWith('bar');
+      this.events.publish('json_reader:get', options);
+      expect( options.complete ).toHaveBeenCalledWith('bar');
     });
 
     it('JSON parses the response', function(){
       stub_get_to_respond('{"foo":"bar"}');
-      this.events.publish('json_reader:get', this.options);
-      expect( this.options.complete ).toHaveBeenCalledWith({ foo: 'bar' });
+      this.events.publish('json_reader:get', options);
+      expect( options.complete ).toHaveBeenCalledWith({ foo: 'bar' });
     });
   });
 });
