@@ -1,8 +1,18 @@
-describe('Collections', function(){
+describe('Collection', function(){
 
-  it("should be defined");
+  it("should be defined", function(){
+    expect(crampons.teeth.Collection).toBeDefined();
+  });
 
-  it("should be able to create a new named collection");
+  it("should be able to return a defined collection", function(){
+    var events = new crampons.Events();
+    var foos = new crampons.teeth.Collection(events, 'foos');
+    var complete = jasmine.createSpy('complete');
+    events.publish('collection:foos:all',{
+      complete: complete
+    });
+    expect(complete).toHaveBeenCalledWith([]);
+  });
 
   it("should be able to add an item to the collection");
 
